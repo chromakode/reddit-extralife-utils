@@ -25,14 +25,14 @@ strong.changed, td.changed { color:yellow; text-shadow:0 0 4px brown; }
 <body>
 <header>
 <h1>reddit &lt;3 Extra Life</h1>
-<h2>total raised: <strong {{- ' class="changed"' | safe if total_changed }}>{{ total }}</strong></h2>
+<h2>total raised: <strong {{- ' class="changed"' | safe if total.updated }}>{{ total.value }}</strong></h2>
 </header>
 <table>
 <tbody>
 % for player in players
 <tr>
     <td>{{ player['name'] }}</td>
-    <td class="raised {{- ' changed' if player['raised_changed'] }}">{{ player['raised'] }}</td>
+    <td class="raised {{- ' changed' if player.raised_updated }}">{{ player.raised }}</td>
 </tr>
 % endfor
 </tbody>
