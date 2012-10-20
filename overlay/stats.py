@@ -73,7 +73,8 @@ def update(players_path):
         player_data['raised_updated'] = raised != player_data.get('raised')
         player_data['raised'] = raised
 
-    data['players'] = {'list': [ player['name'] for player in players ]}
+    data['players'] = data.get('players', {})
+    data['players']['list'] = [ player['name'] for player in players ]
 
     store.update(data)
     print >> sys.stderr, data
