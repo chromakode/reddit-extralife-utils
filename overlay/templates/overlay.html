@@ -37,6 +37,25 @@ strong.changed, td.changed { color:yellow; text-shadow:0 0 4px brown; }
 % endfor
 </tbody>
 </table>
+<h3>time remaining: <span id="timeleft"></span></h3>
 <div id="bg"><img id="snoo" src="/static/snoo.png"></div>
+<script>
+function zeropad(n) {
+    return n < 10 ? '0'+n : n
+}
+
+var end = Date.UTC(2012, 9, 21, 15, 0, 0)
+timeLeftEl = document.getElementById('timeleft')
+function clock() {
+    var now = new Date(),
+        rem = (end - now) / 1000,
+        hours = Math.floor(rem / (60 * 60)),
+        mins = Math.floor(rem % (60 * 60) / 60),
+        secs = Math.floor(rem % 60)
+    timeLeftEl.textContent = zeropad(hours) + ':' + zeropad(mins) + ':' + zeropad(secs)
+}
+setInterval(clock, 1*1000)
+clock()
+</script>
 </body>
 </html>
