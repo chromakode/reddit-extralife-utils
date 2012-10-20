@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="refresh" content="60">
+<style>
+@font-face {
+  font-family: 'SilkscreenNormal';
+  src: url('/static/slkscr-webfont.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body { font:3.25vw 'SilkscreenNormal'; color:#7dff00; background:url(/static/bg.png); margin:10px; text-shadow:0 0 4px green; }
+h1, h2 { text-align:center; margin:0; }
+h1 { font-size:2em; }
+h2 { font-size:1.75em; }
+strong, td.raised { color:orangered; text-shadow:0 0 4px brown; }
+table { width:100%; font-size:2em; margin-top:.5em; }
+td.raised { text-align:right; }
+strong.changed, td.changed { color:yellow; text-shadow:0 0 4px brown; }
+#bg { position:absolute; top:0; left:0; bottom:0; right:0; opacity:.15; z-index:-100; text-align:center; }
+#snoo { height:80vh; margin-top:10vh; }
+</style>
+</head>
+<body>
+<header>
+<h1>reddit &lt;3 Extra Life</h1>
+<h2>total raised: <strong {{- ' class="changed"' | safe if total_changed }}>{{ total }}</strong></h2>
+</header>
+<table>
+<tbody>
+% for player in players
+<tr>
+    <td>{{ player['name'] }}</td>
+    <td class="raised {{- ' changed' if player['raised_changed'] }}">{{ player['raised'] }}</td>
+</tr>
+% endfor
+</tbody>
+</table>
+<div id="bg"><img id="snoo" src="/static/snoo.png"></div>
+</body>
+</html>
